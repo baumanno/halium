@@ -46,4 +46,4 @@
                 <h3.list-group-item-heading>OR Addresses
                 <p.list-group-item-text>
                     $forall addr <- orAddresses relay
-                        #{addr}
+                        #{addr}<br>

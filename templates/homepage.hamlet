@@ -2,26 +2,46 @@
   Welcome to Halium
   <small>Here you'll find all your onions!
 
-<.container>
-    <.row>
-        <form method=get action=@{SearchR}> 
-            <.col-md-8>
-                <input .form-control type=text id=search name=q placeholder="Search query...">
-            <.col-md-4>
-                <button .btn .btn-primary type="submit">Search!
+<section>
+    <.container>
+        <.row>
+            <form method=get action=@{SearchR}> 
+                <.col-md-8>
+                    <input .form-control type=text id=search name=q placeholder="Search query...">
+                <.col-md-4>
+                    <button .btn .btn-primary type="submit">Search!
 
-<.container>
-    <.row>
-        <.col-md-6>
-            <p>
-                With Halium, you can search for Tor relays and bridges and view
-                detailed information on them. 
-        <.col-md-6>
-            <p>
-                <strong>Start now!
-                You can use the search field above to start experiencing
-                Halium. The search mechanism will accept several kinds of
-                search keywords:
-                <ul .list-group>
-                    <li.list-group-item>a <strong>nickname
-                    <li.list-group-item>a <strong>fingerprint
+<section>
+    <.container>
+        <.row>
+            <.col-md-6>
+                <p>
+                    With Halium, you can search for Tor relays and bridges and view
+                    detailed information on them. 
+                <p>
+                    <strong>Start now!
+                    You can use the search field above to start experiencing
+                    Halium. The search mechanism will accept several kinds of
+                    search keywords:
+                    <ul .list-group>
+                        <li.list-group-item>a <strong>nickname
+                        <li.list-group-item>a <strong>fingerprint
+                        <li.list-group-item>an <strong>IP-address
+                    <small>
+                        More info <a href=https://onionoo.torproject.org/protocol.html#methods>here</a>!
+            <.col-md-6>
+                <header>Top 10 relays by consensus weight
+                <table.table>
+                    <thead>
+                        <tr>
+                            <th>Nickname
+                            <th>Advertised Bandwidth
+                            <th>Country
+                    <tbody>
+                        $forall relay <- relays result
+                            <tr>
+                                <td>
+                                    <a href=@{RelayR (T.pack (fingerprint relay))}>
+                                        #{M.fromMaybe "-" (nickname relay)}
+                                <td>#{maybe "-" (formatBytes) (advertisedBandwidth relay) }
+                                <td>#{M.fromMaybe "-" (country relay)}
