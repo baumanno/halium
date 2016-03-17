@@ -5,3 +5,4 @@
 
 /             HomeR   GET
 /search       SearchR GET
+/bridge/#Text BridgeR GET
