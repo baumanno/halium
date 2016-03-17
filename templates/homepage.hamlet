@@ -1,4 +1,9 @@
 <h1.jumbotron>
-  Welcome to Yesod!
+  Welcome to Halium
+  <small>Here you'll find all your onions!
 
 <.page-header><h2>Starting
+
+<form method=get action="">
+    <input name=q placeholder="Search query...">
+    <button .btn .btn-primary type="submit">
