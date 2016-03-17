@@ -25,6 +25,7 @@ library
                      Handler.Relay
                      Handler.Bridge
                      Handler.Search
+                     Util
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
