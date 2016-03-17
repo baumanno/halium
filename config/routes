@@ -6,3 +6,4 @@
 /             HomeR   GET
 /search       SearchR GET
 /bridge/#Text BridgeR GET
+/relay/#Text  RelayR  GET

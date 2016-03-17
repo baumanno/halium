@@ -1,0 +1,49 @@
+<.page-header>
+    <h1>
+        Details for #{M.fromMaybe "(unknown)" (nickname relay)}
+        <small>#{fingerprint relay}
+    $if running relay
+        <span.label.label-success>Running
+    $else
+        <span.label.label-danger>Down
+
+
+<.container>
+    <.row>
+        <.col-md-6>
+            <.list-group-item>
+                <h3.list-group-item-heading>Uptime
+                <p.list-group-item-text>#{uptime relay}
+
+        $maybe fs <- flags relay
+            <.col-md-6>
+                <.list-group-item>
+                    <h3.list-group-item-heading>Flags
+                    <p.list-group-item-text>
+                        $forall f <- fs
+                            <span.label.label-info>#{f}
+
+        $maybe lr <- lastRestarted relay
+            <.col-md-6>
+                <.list-group-item>
+                    <h3.list-group-item-heading>Last restarted
+                    <p.list-group-item-text>#{lr}
+
+        $maybe pl <- platform relay
+            <.col-md-6>
+                <.list-group-item>
+                    <h3.list-group-item-heading>Platform
+                    <p.list-group-item-text>#{pl}
+
+        $maybe bw <- advertisedBandwidth relay
+            <.col-md-6>
+                <.list-group-item>
+                    <h3.list-group-item-heading>Advertised Bandwidth
+                    <p.list-group-item-text>#{formatBytes bw}
+
+        <.col-md-6>
+            <.list-group-item>
+                <h3.list-group-item-heading>OR Addresses
+                <p.list-group-item-text>
+                    $forall addr <- orAddresses relay
+                        #{addr}
