@@ -1,0 +1,3 @@
+[submodule "upstream/onionhoo"]
+	path = upstream/onionhoo
+	url = https://github.com/baumanno/onionhoo.git
