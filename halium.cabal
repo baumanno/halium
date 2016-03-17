@@ -85,6 +85,7 @@ library
                  , vector
                  , time
                  , wai
+                 , onionhoo
 
 executable         halium
     if flag(library-only)
