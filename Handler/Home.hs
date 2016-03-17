@@ -1,16 +1,29 @@
+-- | Homepage with instructions and Top 10
 module Handler.Home where
 
-import Import
+import Onionhoo.Detail
+import Onionhoo.Detail.Relay as R
+import Onionhoo.Query (detailQuery)
 
--- This is a handler function for the GET request method on the HomeR
--- resource pattern. All of your resource patterns are defined in
--- config/routes
---
--- The majority of the code you will write in Yesod lives in these handler
--- functions. You can spread them across multiple files if you are so
--- inclined, or create a single monolithic file.
+import Import
+import Util
+
+import Data.Maybe as M
+import Data.Text as T
+
+
+-- | gets the Top 10 relays by consensus weight and renders the view
 getHomeR :: Handler Html
-getHomeR =
-    defaultLayout $ do
-        setTitle "Welcome To Yesod!"
+getHomeR = do
+  -- This pattern (lifting, destructuring, matching) is very common, maybe it
+  -- should be generalized or put into onionhoo? TODO
+  details <- liftIO $ detailQuery ["limit=10", "order=-consensus_weight"]
+  case details of
+    (Left err) -> defaultLayout [whamlet|
+                                  <h2>An error occurred.
+                                  <p>#{err}
+                                |]
+    (Right result) -> do
+      defaultLayout $ do
+        setTitle "Welcome To Halium!"
         $(widgetFile "homepage")
