@@ -2,8 +2,26 @@
   Welcome to Halium
   <small>Here you'll find all your onions!
 
-<.page-header><h2>Starting
+<.container>
+    <.row>
+        <form method=get action=@{SearchR}> 
+            <.col-md-8>
+                <input .form-control type=text id=search name=q placeholder="Search query...">
+            <.col-md-4>
+                <button .btn .btn-primary type="submit">Search!
 
-<form method=get action=@{SearchR}> 
-    <input name=q placeholder="Search query...">
-    <button .btn .btn-primary type="submit">
+<.container>
+    <.row>
+        <.col-md-6>
+            <p>
+                With Halium, you can search for Tor relays and bridges and view
+                detailed information on them. 
+        <.col-md-6>
+            <p>
+                <strong>Start now!
+                You can use the search field above to start experiencing
+                Halium. The search mechanism will accept several kinds of
+                search keywords:
+                <ul .list-group>
+                    <li.list-group-item>a <strong>nickname
+                    <li.list-group-item>a <strong>fingerprint
