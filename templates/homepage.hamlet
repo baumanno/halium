@@ -4,6 +4,6 @@
 
 <.page-header><h2>Starting
 
-<form method=get action="">
+<form method=get action=@{SearchR}> 
     <input name=q placeholder="Search query...">
     <button .btn .btn-primary type="submit">

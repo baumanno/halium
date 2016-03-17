@@ -1,0 +1,44 @@
+<.page-header>
+    <h2>Search results for '#{q}'
+
+<.container>
+    $if null rs
+        <h3>No relays found
+    $else
+        <h3>Found #{length rs} relays
+        <.container>
+            <table.table>
+                <thead>
+                    <tr>
+                    <th>Nickname
+                    <th>Fingerprint
+                    <th>Running
+                <tbody>
+                    $forall relay <- rs
+                        <tr>
+                            $maybe nick <- R.n relay
+                                <td><a href=@{RelayR (fp relay)}>#{nick}
+                            $nothing
+                                <td>--
+                            <td>#{R.f relay}
+                            <td>#{R.r relay}
+    $if null bs
+        <h3>No bridges found
+    $else
+        <h3>Found #{length bs} bridges
+        <.container>
+            <table.table>
+                <thead>
+                    <tr>
+                    <th>Nickname
+                    <th>Hashed fingerprint
+                    <th>Running
+                <tbody>
+                    $forall bridge <- bs
+                        <tr>
+                            $maybe nick <- B.n bridge
+                                <td><a href=@{BridgeR (hfp bridge)}>#{nick}
+                            $nothing
+                                <td>--
+                            <td>#{B.h bridge}
+                            <td>#{B.r bridge}
